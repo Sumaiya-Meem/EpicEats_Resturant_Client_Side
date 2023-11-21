@@ -31,12 +31,12 @@ const Header = () => {
             My cart
         </NavLink>
         <NavLink
-            to="/contact"
+            to="/menu"
             className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "text-green-400" : "text-white"
             }
         >
-            Contact
+            Our Menu
         </NavLink>
 
 
