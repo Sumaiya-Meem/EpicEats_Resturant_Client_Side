@@ -2,26 +2,12 @@ import { useEffect, useState } from "react";
 import TitleSection from "../../../Shared/TitleSection/TitleSection";
 import axios from 'axios';
 import MenuItem from "../../../Shared/MenuItem/MenuItem";
+import useMenu from "../../../Hooks/useMenu";
 const PopularMenu = () => {
 
-    const [menuItem,setMenuItem]=useState([]);
+   const [menuItem]=useMenu();
+   const popularItem =menuItem.filter(item=>item.category==="popular")
 
-    useEffect(()=>{
-        const menuData = async()=>{
-            try{
-
-                const result = await axios.get('menu.json');
-
-                const popularItem= result.data.filter(item => item.category === "popular")
-                setMenuItem(popularItem);
-            }
-            catch{
-                console.error("Error to fetch menu item",error)
-            }
-
-        }
-        menuData();
-    },[])
 
     // console.log(menuItem)
 
@@ -38,10 +24,13 @@ const PopularMenu = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2  gap-4">
                 {
-                    menuItem.map(item => <MenuItem key={item._id} item={item}></MenuItem>)
+                    popularItem.map(item => <MenuItem key={item._id} item={item}></MenuItem>)
                 }
             </div>
+            <div className="flex justify-center">
+            <button className=" text-xl" style={{borderBottom:"3px solid black",borderRadius:"5px"}}>View All Menu</button>
             
+            </div>
         </div>
     );
 };

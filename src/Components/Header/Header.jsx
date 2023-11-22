@@ -15,13 +15,22 @@ const Header = () => {
             Home
         </NavLink>
         <NavLink
-            to="/dashboard"
+            to="/menu"
             className={({ isActive, isPending }) =>
                 isPending ? "pending" : isActive ? "text-green-400" : "text-white"
             }
         >
-            Dashbaord
+            Our Menu
         </NavLink>
+        <NavLink
+            to="/order/Salad"
+            className={({ isActive, isPending }) =>
+                isPending ? "pending" : isActive ? "text-green-400" : "text-white"
+            }
+        >
+            Order Food
+        </NavLink>
+
         <NavLink
             to="/cart"
             className={({ isActive, isPending }) =>
@@ -29,14 +38,6 @@ const Header = () => {
             }
         >
             My cart
-        </NavLink>
-        <NavLink
-            to="/menu"
-            className={({ isActive, isPending }) =>
-                isPending ? "pending" : isActive ? "text-green-400" : "text-white"
-            }
-        >
-            Our Menu
         </NavLink>
 
 
