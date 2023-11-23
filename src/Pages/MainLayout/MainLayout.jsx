@@ -1,11 +1,15 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import Header from '../../Components/Header/Header';
 
 const MainLayout = () => {
+    const location = useLocation();
+    // console.log(location)
+    const noHeader = location.pathname.includes('register')
     return (
         <div>
-            <Header></Header>
+            {noHeader ||  <Header></Header>}
+           
             <Outlet></Outlet>
         </div>
     );

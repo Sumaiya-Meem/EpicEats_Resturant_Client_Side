@@ -2,12 +2,13 @@ import { Button, Card } from 'flowbite-react';
 
 const FoodCard = ({item}) => {
    const {image,name,price,recipe} = item;
+   
 
     return (
         <div>
 
     <Card
-      className="max-w-sm"
+      className="max-w-sm h-[400px]"
     >
     <div className='relative'>
         <img src={image} className='rounded-lg' alt="" srcset="" />

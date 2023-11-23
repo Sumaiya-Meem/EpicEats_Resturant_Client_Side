@@ -1,6 +1,6 @@
 import React from 'react';
 import { Avatar, Button, Dropdown, Navbar } from 'flowbite-react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const Header = () => {
 
@@ -71,12 +71,16 @@ const Header = () => {
                         <Dropdown.Divider />
                         <Dropdown.Item>Sign out</Dropdown.Item>
                     </Dropdown> */}
+                    <Link to="/register">
                     <Button color="" className='mr-2' pill>
                         SignUp
-                    </Button>
+                    </Button></Link>
+                    <Link to="/login">
                     <Button color="light" className='p-2 font-semibold' pill>
                         Login
                     </Button>
+                    </Link>
+                    
                     <Navbar.Toggle />
                 </div>
                 <Navbar.Collapse>
