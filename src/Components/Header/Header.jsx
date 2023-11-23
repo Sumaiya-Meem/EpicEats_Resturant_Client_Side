@@ -1,8 +1,19 @@
 import React from 'react';
 import { Avatar, Button, Dropdown, Navbar } from 'flowbite-react';
 import { Link, NavLink } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../../Context/AuthProvider';
 
 const Header = () => {
+
+    const {user,logOut}=useContext(AuthContext)
+
+    const handleLogout =()=>{
+        console.log("logout")
+        logOut()
+        .then(()=>{})
+        .catch(err=>console.log(err))
+    }
 
     const menus = <>
 
@@ -54,7 +65,9 @@ const Header = () => {
                     </div>
                 </Navbar.Brand>
                 <div className="flex md:order-2">
-                    {/* <Dropdown
+                    {
+                        user ? <>
+                        <Dropdown
                         arrowIcon={false}
                         inline
                         label={
@@ -65,14 +78,19 @@ const Header = () => {
                             <span className="block text-sm">Bonnie Green</span>
                             <span className="block truncate text-sm font-medium">name@flowbite.com</span>
                         </Dropdown.Header>
-                        <Dropdown.Item>Dashboard</Dropdown.Item>
                         <Dropdown.Item>Settings</Dropdown.Item>
-                        <Dropdown.Item>Earnings</Dropdown.Item>
                         <Dropdown.Divider />
-                        <Dropdown.Item>Sign out</Dropdown.Item>
-                    </Dropdown> */}
-                    <Link to="/register">
-                    <Button color="" className='mr-2' pill>
+                        <Dropdown.Item>
+                        <Button color="" className=''  onClick={handleLogout}>
+                        LogOut
+                    </Button>
+                        </Dropdown.Item>
+                    </Dropdown> 
+                        </>
+                        :
+                        <>
+                        <Link to="/register">
+                    <Button color="" className='mr-2' pill onClick={handleLogout}>
                         SignUp
                     </Button></Link>
                     <Link to="/login">
@@ -80,6 +98,9 @@ const Header = () => {
                         Login
                     </Button>
                     </Link>
+                        </>
+                    }
+                    
                     
                     <Navbar.Toggle />
                 </div>

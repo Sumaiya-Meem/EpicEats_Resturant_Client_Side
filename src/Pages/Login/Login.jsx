@@ -1,7 +1,13 @@
 import { Button, Card, Checkbox, Label, TextInput } from 'flowbite-react';
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../Context/AuthProvider';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
+
+    const {signIn} =useContext(AuthContext)
+
+    const navigate =useNavigate()
 
     const handleLogin = e =>{
         e.preventDefault();
@@ -10,8 +16,15 @@ const Login = () => {
 
         const email= form.email.value;
         const password= form.password.value;
-
         console.log(email,password)
+        
+        signIn(email,password)
+        .then(res=>{
+            const user =res.user;
+            console.log("Login User: ",user);
+            navigate("/")
+        })
+
     }
     return (
         <div >
@@ -35,6 +48,9 @@ const Login = () => {
           <Label htmlFor="remember">Remember me</Label>
         </div>
         <Button type="submit">Login</Button>
+        <p>Don't have an account? <Link to="/register">
+         SignUp here
+        </Link></p>
       </form>
     </Card>
 
